@@ -1,0 +1,49 @@
+name: Test and deploy SIR app
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - name: Install R dependencies
+        shell: Rscript {0}
+        run: install.packages(c('shiny', 'shinylive'))
+      - name: Test mathematical model
+        run: Rscript tests/model-tests.R
+      - name: Test Shiny interactions
+        run: Rscript tests/shiny-tests.R
+      - name: Export browser app
+        shell: Rscript {0}
+        run: |
+          shinylive::export('app', 'site')
+          stopifnot(file.exists('site/index.html'))
+          file.create('site/.nojekyll')
+          writeLines(capture.output(sessionInfo()), 'site/build-info.txt')
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

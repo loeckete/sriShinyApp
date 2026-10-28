@@ -1,0 +1,95 @@
+{
+  "scope": "Python numerical reproduction only; R execution not verified",
+  "checks": [
+    {
+      "model": "SIR",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 1.4117553348569345e-08,
+      "maximum_mass_error": 9.947598300641403e-14,
+      "minimum_state": 0.0,
+      "initial_I_change": 0.196
+    },
+    {
+      "model": "SIR",
+      "m": 0.03,
+      "v": 0.2,
+      "maximum_reference_error": 3.471043896752235e-09,
+      "maximum_mass_error": 8.526512829121202e-14,
+      "minimum_state": 0.0,
+      "initial_I_change": 0.166
+    },
+    {
+      "model": "SIS",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 1.518871783900977e-08,
+      "maximum_mass_error": 9.947598300641403e-14,
+      "minimum_state": 1.0,
+      "initial_I_change": 0.196
+    },
+    {
+      "model": "SIS",
+      "m": 0.03,
+      "v": 0,
+      "maximum_reference_error": 6.254907702896162e-09,
+      "maximum_mass_error": 7.105427357601002e-14,
+      "minimum_state": 1.0,
+      "initial_I_change": 0.166
+    },
+    {
+      "model": "SEIR",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 8.203579815457829e-09,
+      "maximum_mass_error": 7.105427357601002e-14,
+      "minimum_state": 0.0,
+      "initial_I_change": -0.2
+    },
+    {
+      "model": "SEIR",
+      "m": 0.03,
+      "v": 0.2,
+      "maximum_reference_error": 1.0145207063327888e-08,
+      "maximum_mass_error": 2.2737367544323206e-13,
+      "minimum_state": 0.0,
+      "initial_I_change": -0.23
+    },
+    {
+      "model": "SIRD",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 2.6770550221044687e-09,
+      "maximum_mass_error": 5.684341886080802e-14,
+      "minimum_state": 0.0,
+      "initial_I_change": 0.14600000000000002
+    },
+    {
+      "model": "SIRD",
+      "m": 0.03,
+      "v": 0.2,
+      "maximum_reference_error": 4.000924036517972e-10,
+      "maximum_mass_error": 1.7053025658242404e-13,
+      "minimum_state": 0.0,
+      "initial_I_change": 0.11599999999999999
+    },
+    {
+      "model": "SIR",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 2.55324650311195e-11,
+      "maximum_mass_error": 1.2789769243681803e-13,
+      "minimum_state": 0.0,
+      "initial_I_change": -0.05150000000000002
+    },
+    {
+      "model": "SIR",
+      "m": 0,
+      "v": 0,
+      "maximum_reference_error": 1.624123058263649e-11,
+      "maximum_mass_error": 8.526512829121202e-14,
+      "minimum_state": 0.0,
+      "initial_I_change": -0.0040000000000000036
+    }
+  ]
+}

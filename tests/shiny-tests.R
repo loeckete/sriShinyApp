@@ -1,0 +1,22 @@
+library(shiny)
+# Load definitions without starting a server.
+setwd('app')
+source('app.R',local=TRUE)
+testServer(server, {
+  p <- default_config()
+  do.call(session$setInputs,p)
+  session$setInputs(run=1)
+  stopifnot(current()$config$beta==.004, is.null(error()))
+  session$setInputs(save=1)
+  stopifnot(!is.null(previous()))
+  session$setInputs(beta=.0015)
+  stopifnot(current()$config$beta==.004) # no run until requested
+  session$setInputs(run=2)
+  stopifnot(current()$config$beta==.0015,previous()$config$beta==.004)
+  stopifnot(grepl('0.0015',output$summary,fixed=TRUE))
+  session$setInputs(S=-1,run=3)
+  stopifnot(!is.null(error()), current()$config$S==99)
+  session$setInputs(clear=1)
+  stopifnot(is.null(previous()))
+})
+cat('Shiny server tests passed.\n')
